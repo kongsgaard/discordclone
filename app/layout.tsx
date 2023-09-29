@@ -18,22 +18,22 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body className={cn(
-          font.className,
-          "bg-white dark:bg-[#313338]"
-        )}>
-          <ThemeProvider 
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem={false}
-            storageKey="discord-theme"
-          >
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+  <ClerkProvider>
+    <html lang="en" suppressHydrationWarning>
+    <body className={cn(
+      font.className,
+      "bg-white dark:bg-[#313338]"
+    )}>
+      <ThemeProvider 
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem={false}
+      storageKey="discord-theme"
+      >
+      {children}
+      </ThemeProvider>
+    </body>
+    </html>
+  </ClerkProvider>
   )
 }
