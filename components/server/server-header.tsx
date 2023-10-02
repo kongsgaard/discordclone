@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, LogOut, PlusCircle, SettingsIcon, Trash, User, UserPlus, Users, UsersIcon } from "lucide-react";
+import { useModal } from "@/hooks/use-modal-store";
 
 interface ServerHeaderProps {
   server: ServerWithMembersWithProfiles;
@@ -20,6 +21,7 @@ export const ServerHeader = ({
   server,
   role
 }: ServerHeaderProps) => {
+  const  { onOpen } = useModal();
   const isAdmin = role === MemberRole.ADMIN;
   const isModerator = isAdmin || role === MemberRole.MODERATOR;
 
@@ -47,7 +49,9 @@ export const ServerHeader = ({
         {isModerator && (
           <DropdownMenuItem
             className="text-indigo-600 dark:text-indigo-400 px-3 py-2 text-sm cursor-pointer"
+            onClick={() => onOpen("invite", {server: server})}
           >
+            
             Invite people
             <UserPlus className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
@@ -55,6 +59,7 @@ export const ServerHeader = ({
         {isAdmin && (
           <DropdownMenuItem
             className="px-3 py-2 text-sm cursor-pointer"
+            onClick={() => onOpen("editServer", {server: server})}
           >
             Server Settings
             <SettingsIcon className="h-4 w-4 ml-auto" />
@@ -63,6 +68,7 @@ export const ServerHeader = ({
         {isAdmin && (
           <DropdownMenuItem
             className="px-3 py-2 text-sm cursor-pointer"
+            onClick={() => onOpen("members", {server: server})}
           >
             Manage Members
             <Users className="h-4 w-4 ml-auto" />
