@@ -1,0 +1,32 @@
+{
+  "POST Request with Current Profile": {
+    "prefix": "restapirequest",
+    "body": [
+      "import { currentProfile } from \"@/lib/current-profile\";",
+      "import { NextResponse } from \"next/server\";",
+      "",
+      "export async function POST(",
+      "\treq: Request",
+      ") {",
+      "\ttry {",
+      "\t\tconst profile = await currentProfile();",
+      "",
+      "\t\tif (!profile) {",
+      "\t\t\treturn new NextResponse(\"Unauthorized\", {status: 401});",
+      "\t\t}",
+      "",
+      "\t} catch(error) {",
+      "\t\tconsole.log(\"[]\", error);",
+      "\t\treturn new NextResponse(\"Internal Error\", {status: 500});",
+      "\t}",
+      "}"
+    ],
+    "description": "Async POST request with current profile check",
+		"scope": "typescript"
+  }
+}
+
+
+
+
+
